@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('ip').textContent = ipAddress;
 
       var copyButton = document.getElementById('copyButton');
+      var copiedIcon = document.getElementById('copiedIcon');
+      var copyIcon = document.getElementById('copyIcon');
+
+      var messageContainer = document.getElementById('message');
+
       copyButton.addEventListener('click', function() {
         // Copy IP address to clipboard
         var tempInput = document.createElement('input');
@@ -16,6 +21,19 @@ document.addEventListener('DOMContentLoaded', function() {
         tempInput.select();
         document.execCommand('copy');
         document.body.removeChild(tempInput);
+
+        // Show copied icon
+        copiedIcon.style.display = 'inline';
+        copyIcon.style.display = 'none';
+
+        // Show message
+        messageContainer.textContent = 'IP copied..!';
+        setTimeout(function() {
+          messageContainer.textContent = ''; // Clear message after a delay
+          copiedIcon.style.display = 'inline'; // whow copied icon after a delay
+           // Hide copy icon after a delay
+        }, 3000); // Delay in milliseconds
+
       });
     }
   };
